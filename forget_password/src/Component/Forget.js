@@ -1,5 +1,5 @@
 // import { Stack, Heading, Input, CheckBox, Link, Button , Box, Flex, Container, Text, VStack , Image, HStack, FormControl, FormLabel } from '@chakra-ui/react'
-import React from 'react'
+import React, {useState} from 'react'
 import {
     Container,
     Flex,
@@ -18,8 +18,9 @@ import {
     InputGroup,
     InputLeftElement,
     Textarea,
-    Image
+    Image, FormHelperText
   } from '@chakra-ui/react';
+  import {WarningIcon} from '@chakra-ui/icons'
   import {
     MdPhone,
     MdEmail,
@@ -28,10 +29,36 @@ import {
     MdOutlineEmail,
   } from 'react-icons/md';
   import { BsGithub, BsDiscord, BsPerson } from 'react-icons/bs';
+  import { useFormik } from "formik";
+  import * as Yup from 'yup'
 
+
+  const EmailSchema = Yup.object().shape({
+    email:Yup.string()
+    .email("Invalid email format")
+    .required("Please enter your email")
+  });
+
+  const initialValue ={
+    email : ""
+  }
+const Forget =() => {
+
+  const {values, errors, handleBlur, handleChange, handleSubmit} =  
+    useFormik({
+     initialValues:initialValue,
+     validationSchema:EmailSchema, 
+ 
+     onSubmit :(values, action) => {
+         console.log(values);
+         action.resetForm();
+        
+     }
+
+    
+ });
   
-
-function Forget() {
+   
   return (
     // <Flex
     // flexDirection="column"
@@ -89,7 +116,9 @@ function Forget() {
                 </Box>
               </WrapItem>
               <WrapItem>
+                
                 <Box bg="#f2f2f2" borderRadius="lg" mt ="10">
+                <form onSubmit={handleSubmit}>
                   <Box m={8} color="#0B0E3F">
                     <VStack spacing={5}>
                         <Text fontSize="xl" fontWeight="bold" >Forgot Password ? </Text>
@@ -99,12 +128,29 @@ function Forget() {
                             pointerEvents="none"
                             children={<MdOutlineEmail color="gray.800" />}
                           />
-                          <Input type ="email" placeholder='Enter your Email Id'/>
+                          <Input 
+                          type ="email" 
+                          name ="email" 
+                          placeholder='Enter your Email Id'
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          value={values.email}
+                          />
                         </InputGroup>
                       </FormControl>
+
+                            {errors.email ? (
+                                <HStack>
+                                    
+                                <WarningIcon w={6} h={6} color="red.500" /> <Text justifyContent="flex-start"  color="red" pl ="3"> {errors.email} </Text>
+
+                                </HStack>) : null 
+                            } 
+                      
                       
                       <FormControl>
                         <Button
+                          type ="submit"
                           variant="solid"
                           bg="blue.600"
                           color="white"
@@ -114,6 +160,7 @@ function Forget() {
                       </FormControl>
                     </VStack>
                   </Box>
+                  </form>
                 </Box>
               </WrapItem>
             </Wrap>
