@@ -60,46 +60,7 @@ const Forget =() => {
   
    
   return (
-    // <Flex
-    // flexDirection="column"
-    // width="full"
-    // height="150vh"
-    // bg ="white"
-    // justifyContent="flex-top"
-    // >
-      
-    //     <Flex h ={{base:"auto" , lg: "100vh"}}
-    //      py={[0,10,20]}
-    //      direction={{
-    //       base: 'column-reverse',
-    //       lg: "row", 
-    //      }}
-
-    //      >
-    //         <Container maxW="container.xl" bg="blue.100">
-    //             <Box w="auto" h="auto" bg ="blue.100" pl="10vh">
-                    
-    //                 <HStack w ="60vh" pt="10vh" bg="purple.100">
-    //                     <Image src="img.png"/>
-                        
-                        
-                        
-                        
-    //                 </HStack>
-                   
-
-                    
-                   
-    //             </Box>
-
-    //         </Container>
-
-
-        
-            
-        
-    //     </Flex>
-    // </Flex>
+   
     <Container  maxW="full" mt={0} centerContent overflow="hidden">
       <Flex>
         <Box
@@ -117,13 +78,13 @@ const Forget =() => {
               </WrapItem>
               <WrapItem>
                 
-                <Box bg="#f2f2f2" borderRadius="lg" mt ="10">
+                <Box bg="rgb(255,255,255,.5)" borderRadius="lg" mt ="10">
                 <form onSubmit={handleSubmit}>
                   <Box m={8} color="#0B0E3F">
                     <VStack spacing={5}>
                         <Text fontSize="xl" fontWeight="bold" >Forgot Password ? </Text>
                       <FormControl id="name">
-                        <InputGroup borderColor="#E0E1E7">
+                        <InputGroup borderColor="blue.600">
                           <InputLeftElement
                             pointerEvents="none"
                             children={<MdOutlineEmail color="gray.800" />}
@@ -142,7 +103,7 @@ const Forget =() => {
                             {errors.email ? (
                                 <HStack>
                                     
-                                <WarningIcon w={6} h={6} color="red.500" /> <Text justifyContent="flex-start"  color="red" pl ="3"> {errors.email} </Text>
+                                <WarningIcon w={4} h={4} color="red.500" /> <Text justifyContent="flex-start"  color="red" pl ="1"> {errors.email} </Text>
 
                                 </HStack>) : null 
                             } 
