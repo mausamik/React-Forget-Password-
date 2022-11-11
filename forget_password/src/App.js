@@ -1,6 +1,6 @@
 
 
-import Forget from './Component/Forget';
+import Forget from './Pages/Forget';
 
 function App() {
   return (
